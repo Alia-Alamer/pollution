@@ -63,15 +63,3 @@ axes[1].set_title('no2 nach Tagestyp')
 plt.tight_layout()
 plt.show()
 
-
-plt.figure(figsize=(10, 8))
-correlation_matrix = content.corr(numeric_only=True)
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0, square=True, fmt='.2f')
-plt.title('korrelationsmatrix aller variablen')
-plt.tight_layout()
-plt.show()
-
-print("Korrelationen mit PM10:")
-print(correlation_matrix['pm10'].sort_values(ascending=False))
-print("\nKorrelationen mit NO2:")
-print(correlation_matrix['no2'].sort_values(ascending=False))
