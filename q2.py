@@ -16,26 +16,30 @@ content = filecontent["Graz-DB"]
 model_pm10 = smf.ols(formula="pm10 ~ C(day_type) + humidity + temp + prec + windspeed + peak_velocity", data=content).fit()
 print(model_pm10.summary())
 
-anova_lm(model_pm10)
+print(anova_lm(model_pm10))
 
 
 
 model_no2 = smf.ols(formula="no2 ~ C(day_type) + humidity + temp + prec + windspeed + peak_velocity", data=content).fit()
 print(model_no2.summary())
 
-anova_lm(model_no2)
+print(anova_lm(model_no2))
 
 
 
 
 sns.scatterplot(x=model_pm10.fittedvalues, y=model_pm10.resid)
 plt.axhline(0, color="red")
+plt.xlabel('fitted values (vorhergesagte werte)')
+plt.ylabel('residuals (fehler)')
 plt.title("pm10 residuen vs. fitted")
 plt.show()
 
 
 sns.scatterplot(x=model_no2.fittedvalues, y=model_no2.resid)
 plt.axhline(0, color="red")
+plt.xlabel('fitted values (vorhergesagte werte)')
+plt.ylabel('residuals (fehler)')
 plt.title("no2 residuen vs. fitted")
 plt.show()
 

@@ -51,3 +51,27 @@ for preds in predictors:
     plt.title(f"no2 vs {preds}")
     plt.show()
 
+
+fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+
+sns.boxplot(data=content, x='day_type', y='pm10', ax=axes[0])
+axes[0].set_title('pm10 nach Tagestyp')
+
+sns.boxplot(data=content, x='day_type', y='no2', ax=axes[1])
+axes[1].set_title('no2 nach Tagestyp')
+
+plt.tight_layout()
+plt.show()
+
+
+plt.figure(figsize=(10, 8))
+correlation_matrix = content.corr(numeric_only=True)
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0, square=True, fmt='.2f')
+plt.title('korrelationsmatrix aller variablen')
+plt.tight_layout()
+plt.show()
+
+print("Korrelationen mit PM10:")
+print(correlation_matrix['pm10'].sort_values(ascending=False))
+print("\nKorrelationen mit NO2:")
+print(correlation_matrix['no2'].sort_values(ascending=False))
