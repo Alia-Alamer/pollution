@@ -51,24 +51,3 @@ ax2.grid(True, alpha=0.3)
 plt.xlabel('Date')
 plt.tight_layout()
 plt.show()
-
-print("\nCOVID Impact Analysis (First 6 months):")
-print("="*40)
-
-for pollutant in ['pm10', 'no2']:
-    actual_mean = first_six[pollutant].mean()
-    pred_mean = first_six[f'{pollutant}_pred'].mean()
-    difference = pred_mean - actual_mean
-    
-    print(f"\n{pollutant.upper()}:")
-    print(f"  Actual average: {actual_mean:.1f} µg/m³")
-    print(f"  Predicted average: {pred_mean:.1f} µg/m³")
-    print(f"  Difference: {difference:+.1f} µg/m³")
-    print(f"  COVID effect: {difference:+.1f} µg/m³ reduction")
-
-lockdown = first_six.loc['2020-03-16':'2020-04-14']
-before_lockdown = first_six.loc['2020-01-01':'2020-03-15']
-
-print(f"\nLockdown Effect (16.03 - 14.04):")
-print(f"PM10 reduction: {(before_lockdown['pm10'].mean() - lockdown['pm10'].mean()):.1f} µg/m³")
-print(f"NO2 reduction: {(before_lockdown['no2'].mean() - lockdown['no2'].mean()):.1f} µg/m³")
